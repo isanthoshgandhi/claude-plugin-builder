@@ -73,7 +73,7 @@ Install: claude plugin marketplace add [your-repo]
 
 ## Built From Experience
 
-This collection is built from direct experience developing **[foresight-engine](https://github.com/isanthoshgandhi/foresight-engine)** — a 12-step strategic foresight plugin using IFTF methodology.
+This collection is built from direct experience developing production Claude plugins — learning what works in the real plugin ecosystem.
 
 Key lessons applied to every skill here:
 - `description:` frontmatter = activation trigger, not a description
@@ -106,5 +106,3 @@ santhosh-gandhi-claude-skills/
 ## Author
 
 **Santhosh Gandhi** · [github.com/isanthoshgandhi](https://github.com/isanthoshgandhi)
-
-Also check out: [foresight-engine](https://github.com/isanthoshgandhi/foresight-engine) — Strategic foresight plugin using IFTF/STEEEP methodology.
