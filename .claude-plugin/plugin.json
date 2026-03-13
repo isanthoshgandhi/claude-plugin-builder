@@ -1,0 +1,11 @@
+{
+  "name": "santhosh-gandhi-claude-skills",
+  "version": "1.0.0",
+  "description": "Claude skills collection by Santhosh Gandhi — plugin builder, foresight, and more.",
+  "author": "isanthoshgandhi",
+  "skills": [
+    "skills/claude-plugin-builder/SKILL.md"
+  ],
+  "agents": [],
+  "commands": []
+}
