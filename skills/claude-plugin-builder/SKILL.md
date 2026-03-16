@@ -505,3 +505,17 @@ Topics to add manually on GitHub:
 - Personal plugin repos hit a marketplace key collision when a user has more than one — GitHub username is the key, so only one repo per user can be registered as a marketplace at a time
 - Fix: submit to `davepoon/buildwithclaude` via PR (community marketplace, no collision) OR create a private umbrella repo as personal marketplace
 - When submitting PR to buildwithclaude: plugins go under `plugins/<plugin-name>/` with full structure; skills go under `plugins/all-skills/skills/<skill-name>/SKILL.md` BUT must also be wrapped as a plugin if submitting standalone
+
+**Official Anthropic submission rules (`claude.ai/settings/plugins/submit`):**
+- This is SEPARATE from buildwithclaude — it submits to Anthropic's official Plugin Directory (inside Claude UI itself)
+- Submission does NOT guarantee inclusion — Anthropic reviews and may reject
+- Form fields (3 steps): Step 1 → authorization checkbox; Step 2 → Link to plugin (GitHub URL), Plugin homepage, Plugin name (kebab-case), Plugin description, Example use cases (6+ concrete examples); Step 3 → Supported platforms + License
+- Supported platforms: `Claude Code` (agents + scripts) and/or `Claude Cowork` (skills only) — skills work on both; agents only on Claude Code
+- Submit to BOTH Anthropic official form AND buildwithclaude PR for maximum discoverability — they serve different audiences
+- Anthropic official = inside Claude UI, higher trust, slower review; buildwithclaude = external website, community-reviewed, faster
+
+**Two-track publishing strategy (always do both):**
+1. PR to `davepoon/buildwithclaude` → community discoverability, fast merge
+2. Submit at `claude.ai/settings/plugins/submit` → official Claude Plugin Directory, Anthropic-reviewed
+- Submit Anthropic form AFTER the plugin is stable and tested — submission cannot be edited after sending
+- Use the same description from `plugin.json` in the Anthropic form for consistency
