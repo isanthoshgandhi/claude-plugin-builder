@@ -453,7 +453,7 @@ Topics to add manually on GitHub:
 - Affinity map by solution pattern first, workflow phase second
 - Dual-mode parity: every high-value capability deserves both a Skill (soft, claude.ai) and an Agent (hard, Claude Code)
 - If classified as AGENT but platform is claude.ai → downgrade to SKILL + warn user
-- Plugin description must include capability count: "X skills · Y agents · Z commands"
+- Plugin description must include capability count: "X skills · Y agents" — only count what actually exists as files; never inflate with phantom "commands" if no commands/ directory exists
 
 **Agent script rules:**
 - Python scripts do computation only — no external API keys, no pip install of heavy dependencies
@@ -479,10 +479,29 @@ Topics to add manually on GitHub:
 - Open-source acknowledgment table uses columns: Category | Inspired From | Learnings — never "Tools Used" or "What Was Extracted"
 - Capability count order in all descriptions: "X skills · Y agents · Z commands" (skills first, commands last)
 
+**plugin.json rules:**
+- ONLY valid fields: `name`, `version`, `description`, `author` (`name` + `url`), `homepage`, `repository`, `license`, `keywords` — do NOT add `skills`, `agents`, or `commands` arrays; the validator rejects them
+- `author.url` not `author.email`
+- The plugin system auto-discovers skills in `skills/*/SKILL.md` and agents in `agents/*.md` — no manifest needed
+
+**Skill-as-plugin structure (when submitting a standalone skill to a marketplace):**
+- A bare `SKILL.md` file is NOT a valid plugin — it must be wrapped:
+  ```
+  plugin-name/
+  ├── .claude-plugin/plugin.json
+  └── skills/plugin-name/SKILL.md
+  ```
+- Without the `.claude-plugin/plugin.json` wrapper, the UI shows "This plugin doesn't have any skills or agents"
+
+**Umbrella marketplace rules (for personal multi-plugin install):**
+- Umbrella repo needs a ROOT-LEVEL `.claude-plugin/marketplace.json` with `$schema`, `name`, `owner`, `metadata`, and a `plugins[]` array — each entry has `name`, `description`, `version`, `author`, `repository`, `license`, `keywords`, `category`, `source` (relative path)
+- Marketplace `name` field cannot contain "claude", "anthropic", or "official" — use `username-plugins` pattern
+- The umbrella marketplace.json `source` must point to a proper plugin folder (with `.claude-plugin/plugin.json` inside), not a bare skill directory
+
 **Community marketplace rules (buildwithclaude / davepoon/buildwithclaude):**
 - Every agent `.md` file MUST have `category:` in its frontmatter — without it the marketplace validator rejects the plugin
-- Valid category for VC/finance/business agents: `business-finance`
-- `plugin.json` author field must use `"url"` not `"email"`: `{"name": "...", "url": "https://github.com/username"}`
-- Personal plugin repos (one repo per plugin on GitHub) hit a marketplace key collision when a user has more than one — the system uses the GitHub username as the key, so only one repo per user can be registered as a marketplace at a time
-- The long-term fix is an umbrella marketplace repo (`username/claude-plugins`) with a `plugins/` folder containing all plugins as subfolders — but this creates a dual-maintenance burden; individual repos stay for discoverability, umbrella is the install entrypoint
-- For now: guide users to submit to `davepoon/buildwithclaude` via PR so their plugin is installable from the community marketplace without the personal collision problem
+- Every skill `.md` file should also have `category:` in frontmatter
+- Valid agent/skill categories: `business-finance`, `specialized-domains`, `development-architecture`, `data-ai`, `quality-security`, etc.
+- Personal plugin repos hit a marketplace key collision when a user has more than one — GitHub username is the key, so only one repo per user can be registered as a marketplace at a time
+- Fix: submit to `davepoon/buildwithclaude` via PR (community marketplace, no collision) OR create a private umbrella repo as personal marketplace
+- When submitting PR to buildwithclaude: plugins go under `plugins/<plugin-name>/` with full structure; skills go under `plugins/all-skills/skills/<skill-name>/SKILL.md` BUT must also be wrapped as a plugin if submitting standalone
