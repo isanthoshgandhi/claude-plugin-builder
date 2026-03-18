@@ -1,8 +1,8 @@
-# Claude Plugin Builder
+# Public Plugin Builder
 
 > Build complete Claude plugins in 23 guided steps — from raw idea to GitHub push.
 
-**Author:** Santhosh Gandhi · **Version:** 1.0.0
+**Author:** Santhosh Gandhi · **Version:** 1.1.0
 
 ---
 
@@ -17,8 +17,10 @@ Works on **claude.ai** (generates files as code blocks) and **Claude Code** (wri
 ## Install on Claude Code
 
 ```bash
-claude plugin marketplace add https://github.com/isanthoshgandhi/claude-plugin-builder
-claude plugin install claude-plugin-builder
+# Step 1 — Add the marketplace (one-time)
+claude plugin marketplace add https://github.com/isanthoshgandhi/public-plugin-builder
+# Step 2 — Install
+claude plugin install public-plugin-builder
 ```
 
 Then say:
@@ -64,7 +66,7 @@ Every run produces a complete, deployable plugin:
 
 ## Built From Experience
 
-Every generated file incorporates lessons from building the foresight-engine plugin:
+Every generated file incorporates lessons from real-world plugin development:
 
 - `description:` field written as activation trigger, not description
 - Explicit I/O file paths in every agent step
