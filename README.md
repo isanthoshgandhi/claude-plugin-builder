@@ -18,7 +18,7 @@ Works on **claude.ai** (generates files as code blocks) and **Claude Code** (wri
 
 ```bash
 # Step 1 — Add the marketplace (one-time)
-claude plugin marketplace add https://github.com/isanthoshgandhi/public-plugin-builder
+claude plugin marketplace add https://github.com/isanthoshgandhi/claude-plugin-builder
 # Step 2 — Install
 claude plugin install public-plugin-builder
 ```
